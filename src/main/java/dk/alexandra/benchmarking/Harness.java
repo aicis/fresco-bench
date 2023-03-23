@@ -25,14 +25,20 @@ public class Harness {
     private static final int ITERATIONS = 20;
     private static final int WARMUP = 5;
 
+    /**
+     * Launches the harness with the built-in program
+     * @param args the ID for the given harness
+     * @throws IOException
+     */
     public static void main(String[] args) throws IOException {
+        // TODO: add option for where to read 'parties.json' from
         Map<Integer, Party> parties = parsePartyList("parties.json");
         int myId = Integer.parseInt(args[0]);
 
         Harness harness = new Harness(myId, parties);
         List<Program> programs = new ArrayList<>();
         programs.add(new ExampleProgram());
-        programs.add(new ExampleProgram());
+        // TODO: add a way to add programs without modifying this class.
 
         List<String> results = new ArrayList<>();
         for (Program program : programs) {
@@ -42,7 +48,9 @@ public class Harness {
             System.out.println("std.: "+Util.std(times));
             results.add(Util.parseTimes(program.name(), times));
         }
-//        Util.writeResults("./", results);
+        // TODO: Write results in a file (probably add a timestamp to the filename)
+        // Util.writeResults("./", results);
+        // TODO: Don't quit when done, but return to this state for awaiting further instructions
     }
 
     static private Map<Integer, Party> parsePartyList(String path) throws FileNotFoundException {
@@ -56,7 +64,6 @@ public class Harness {
         }
         return map;
     }
-
 
     public Harness(int myId, Map<Integer, Party> parties) {
         this.myId = myId;

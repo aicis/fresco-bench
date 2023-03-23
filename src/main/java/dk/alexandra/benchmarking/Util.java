@@ -22,10 +22,10 @@ public class Util {
         double mean = mean(times);
         double temp = 0.0;
         for (long current : times) {
-            temp += (((double)current) - mean)*(((double)current) - mean);
+            temp += (((double) current) - mean) * (((double) current) - mean);
         }
         int iterations = times.size();
-        return Math.sqrt(temp/((double)(iterations - 1)));
+        return Math.sqrt(temp / ((double) (iterations - 1) ));
     }
 
 
